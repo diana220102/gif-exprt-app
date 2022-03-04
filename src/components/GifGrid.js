@@ -8,14 +8,10 @@ export const GifGrid = ({ category }) => {
     useEffect( () => {
         getGifs();
     }, [])
-
-
     const getGifs = async() => {
-
         const url = 'https://api.giphy.com/v1/gifs/search?q=Rick+and+Morty&limit=10&api_key=ozGInY0EtPoDdBKeTjb16BgWdvRo5KI7';
         const resp = await fetch( url );
         const { data } = await resp.json();
-
         const gifs = data.map( img => {
             return {
                 id: img.id,
@@ -28,11 +24,10 @@ export const GifGrid = ({ category }) => {
         setImages( gifs );
 
     }
-    
+
     return (
         <div>
             <h3> { category } </h3>
-    
                 {
                     images.map( img  => (
                         <GifGridItem 
@@ -41,7 +36,7 @@ export const GifGrid = ({ category }) => {
                         />
                     ))
                 }
-                
+
         </div>
     )
 }
