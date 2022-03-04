@@ -1,5 +1,5 @@
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import { getGifs } from '../helpers/getGifs';
 
 
 export const useFetchGifs = ( category ) => {
@@ -9,12 +9,25 @@ export const useFetchGifs = ( category ) => {
         loading: true
     });
 
-    setTimeout( () =>{
-        setState({
-            data: [],
-            loading: false
-        })
-    }, 3000 ); 
+    useEffect( () => {
+
+        getGifs( category )
+            .then( imgs => {
+                
+                setTimeout( () => {
+
+                    setState({
+                        data: imgs,
+                        loading: false
+                    });
+                    
+                }, 3000);
+
+
+            })
+
+    }, [category])
+
     
 
     return state; // { data:[], loading: true };
