@@ -14,12 +14,12 @@ export const GifExpertApp = () => {
 
             <ol>
                 {
-                    categories.map( category  => {
-                        return <GifGrid 
+                    categories.map( category  => (
+                        <GifGrid 
                             key={ category }
                             category={ category }
                         />
-                    })
+                    ))
                 }
             </ol>
 
